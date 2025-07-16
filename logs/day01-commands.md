@@ -69,7 +69,7 @@ docker run -d -p 8080:8080 -p 50000:50000 --name jenkins jenkins/jenkins:lts
 
 | Step                         | What Happens                                                                       | Time Estimate                                     |
 | ---------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------- |
-| ��� **Image Pull**            | Docker downloads `jenkins/jenkins:lts` image (≈ 500–700 MB) if it's **not cached** | **2–10 minutes** (depends on your internet speed) |
+| 🔽 **Image Pull**            | Docker downloads `jenkins/jenkins:lts` image (≈ 500–700 MB) if it's **not cached** | **2–10 minutes** (depends on your internet speed) |
 | ⚙️ **Container Start**       | Jenkins initializes for the first time (installs plugins, sets up home dir)        | **30 sec – 2 min**                                |
 | ✅ **Total First-Time Setup** | Image pull + container init                                                        | **\~3–12 minutes**                                |
 
@@ -78,6 +78,12 @@ monitor real time installation
 docker logs -f jenkins
 
 terraform -v
+
+docker build -t ml-base:latest .
+
+docker build -t ml-base:latest . | tee ../../logs/docker-build-ml-base.log
+
+echo "Updated at $(date)" >> logs/day01-commands.md
 
 
 git status
@@ -93,5 +99,3 @@ git add .
 git commit -m "."
 
 git push -u origin main
-
-Updated at Wed, Jul 16, 2025  5:13:53 PM
